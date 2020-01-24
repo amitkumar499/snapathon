@@ -1,4 +1,5 @@
-import org.apache.jmeter.engine.StandardJMeterEngine;
+import helpers.DockerConfig;
+import helpers.PinPointCaller;
 import org.apache.jmeter.report.config.ConfigurationException;
 import org.apache.jmeter.report.dashboard.ExportException;
 import org.apache.jmeter.save.SaveService;
@@ -12,6 +13,12 @@ import java.io.IOException;
 public class Main {
 
     public static void main(String[] args) throws ExportException, ConfigurationException, IOException {
+        String appName = "sts-api";
+        float scaleFactor = Float.valueOf("0.5");
+
+        DockerConfig dockerConfig = new DockerConfig(scaleFactor);
+
+        PinPointCaller.getInfoForApp(appName, dockerConfig);
 
         loadJmeterPropertiesFromFiles();
 
